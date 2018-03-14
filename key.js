@@ -7,7 +7,7 @@ function Pkey( inX, w, h, color, note, freq, wl) {
   this.waveLength = wl;
   this.fillColor = color;
   this.isClicked = false;
-  this.shape = 'left';
+  //this.shape = 'left';
 
   this.show = function() {
     stroke(0);
@@ -16,9 +16,9 @@ function Pkey( inX, w, h, color, note, freq, wl) {
     if (this.pos == 'left') {
       beginShape();
       vertex(this.x, 0);
-      vertex(this.w - 10, 0);
-      vertex(this.w - 10, this.h/2);
-      vertex(this.w, 50, this.h/2);
+      vertex(this.w - 20, 0);
+      vertex(this.w - 20, this.h/2);
+      vertex(this.w, this.h/2);
       vertex(this.w, this.h);
       vertex(this.x, this.h);
       endShape(CLOSE);
