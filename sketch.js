@@ -18,11 +18,6 @@ function draw() {
   for (var i = 0; i < keys.length; i++){
     keys[i].show();
   }
-  //stroke(255);
-  //line(width / 2, height / 2, mouseX, mouseY);
-  //pX.html(mouseX)
-  //pY.html(mouseY);
-
 }
 
 function mousePressed() {
@@ -42,30 +37,6 @@ function createKeys(){
   var topLeft = 0;
   for (var i = 0; i < keyCount; i++) {
     var pianoKey = new Pkey(topLeft,scl,height,255,wFreq[i].note,wFreq[i].f, wFreq[i].wavelength);
-    var startNote = pianoKey.note.substr(0,1)
-    switch(startNote) {
-      case 'C':
-        pianoKey.pos = 'left';
-        break;
-      case 'D':
-        pianoKey.pos = 'center';
-        break;
-      case 'E':
-        pianoKey.pos = 'right';
-        break;
-      case 'F':
-        pianoKey.pos = 'left';
-        break;
-      case 'G':
-        pianoKey.pos = 'center';
-        break;
-      case 'A':
-        pianoKey.pos = 'center';
-        break;
-      case 'B':
-        pianoKey.pos = 'right';
-        break;
-    }
     k.push(pianoKey);
     topLeft += scl;
   }
