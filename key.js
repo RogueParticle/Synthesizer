@@ -1,6 +1,7 @@
 function Pkey( inX, w, h, color, note, freq, wl) {
   this.x = inX;
   this.w = w;
+  this.x2 = this.x + this.w;
   this.h = h;
   this.note = note;
   this.f = freq;
@@ -18,10 +19,10 @@ function Pkey( inX, w, h, color, note, freq, wl) {
       stroke(0, 255, 0);
       beginShape();
       vertex(this.x, 0);
-      vertex(this.w - 20, 0);
-      vertex(this.w - 20, this.h/2);
-      vertex(this.w, this.h/2);
-      vertex(this.w, this.h);
+      vertex(this.x2 - 20, 0);
+      vertex(this.x2 - 20, this.h/2);
+      vertex(this.x2, this.h/2);
+      vertex(this.x2, this.h);
       vertex(this.x, this.h);
       endShape(CLOSE);
     } else {
