@@ -8,6 +8,7 @@ function Pkey( inX, w, h, color, note, freq, wl) {
   this.fillColor = color;
   this.isClicked = false;
   //this.shape = 'left';
+  console.log('note: ' + this.note + ' x: ' + this.x + ' w: ' + this.w + ' h: ' + this.h)
 
   this.show = function() {
     stroke(0);
