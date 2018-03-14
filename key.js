@@ -62,7 +62,7 @@ function Pkey( inX, w, h, color, note, freq, wl) {
         endShape(CLOSE);
         break;
       case 'right':
-        beginSpape();
+        beginShape();
         vertex(this.x + 20, 0);
         vertex(this.x2, 0);
         vertex(this.x2, this.h);
