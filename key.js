@@ -15,6 +15,7 @@ function Pkey( inX, w, h, color, note, freq, wl) {
     strokeWeight(2);
     fill(this.fillColor);
     if (this.pos == 'left') {
+      stroke(0, 255, 0);
       beginShape();
       vertex(this.x, 0);
       vertex(this.w - 20, 0);
