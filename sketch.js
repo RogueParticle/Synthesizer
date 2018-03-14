@@ -45,12 +45,26 @@ function createKeys(){
     var startNote = pianoKey.note.substr(0,1)
     switch(startNote) {
       case 'C':
+        pianoKey.pos = 'left';
         break;
       case 'D':
+        pianoKey.pos = 'center';
         break;
       case 'E':
+        pianoKey.pos = 'right';
         break;
-
+      case 'F':
+        pianoKey.pos = 'left';
+        break;
+      case 'G':
+        pianoKey.pos = 'center';
+        break;
+      case 'A':
+        pianoKey.pos = 'center';
+        break;
+      case 'B':
+        pianoKey.pos = 'right';
+        break;
     }
     k.push(pianoKey);
     topLeft += scl;

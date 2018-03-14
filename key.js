@@ -13,7 +13,18 @@ function Pkey( inX, w, h, color, note, freq, wl) {
     stroke(0);
     strokeWeight(2);
     fill(this.fillColor);
-    rect(this.x, 0, this.w, this.h);
+    if (this.pos == 'left') {
+      beginShape();
+      vertex(this.x, 0);
+      vertex(this.w - 10, 0);
+      vertex(this.w - 10, this.h/2);
+      vertex(this.w, 50, this.h/2);
+      vertex(this.w, this.h);
+      vertex(this.x, this.h);
+      endShape(CLOSE);
+    } else {
+      rect(this.x, 0, this.w, this.h);
+    }
   }
 
   this.clicked = function(x,y) {
