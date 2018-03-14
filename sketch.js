@@ -42,7 +42,7 @@ function createKeys(){
   var topLeft = 0;
   for (var i = 0; i < keyCount; i++) {
     var pianoKey = new Pkey(topLeft,scl,height,255,wFreq[i].note,wFreq[i].f, wFreq[i].wavelength);
-    var startNote = pianoKey.not.substr(0,1)
+    var startNote = pianoKey.note.substr(0,1)
     switch(startNote) {
       case 'C':
         break;
@@ -50,7 +50,7 @@ function createKeys(){
         break;
       case 'E':
         break;
-      
+
     }
     k.push(pianoKey);
     topLeft += scl;
