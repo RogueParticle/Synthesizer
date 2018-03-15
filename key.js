@@ -1,16 +1,16 @@
-function Pkey( inX, w, h, color, note, freq, wl, whiteWidth, blackWidth) {
+function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
   this.x = inX;
-  this.w = w;
+  this.whiteWidth = ww;
   this.x2 = this.x + this.w;
-  this.h = h;
+  this.whiteHeight = wh;
+  this.blackWidth = bw;
+  this.blackHeight = bh;
   this.note = note;
   this.f = freq;
   this.waveLength = wl;
   this.fillColor = color;
   this.isClicked = false;
-  this.whiteWidth = whiteWidth;
-  this.blackWidth = blackWidth;
-  this.blackHeight = floor(this.h * .60);
+
   this.octave = this.note.substr(1,1);
   if (this.octave == '#') {
     this.octave = this.note.substr(2,1);
@@ -100,11 +100,8 @@ function Pkey( inX, w, h, color, note, freq, wl, whiteWidth, blackWidth) {
           break;
       }
     } else { //draw black keys
-      //if (this.pos !== 'skip') {
         rect(this.x, 0, this.blackWidth, this.blackHeight);
-      //}
     }
-    //rect(this.x, 0, this.w, this.h);
   }
 
   this.clicked = function(x,y) {

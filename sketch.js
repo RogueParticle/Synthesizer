@@ -1,8 +1,8 @@
 var pX, pY, xPressed, yPressed, keyNote;
-var scl = 50;
+var whiteWidth = 50;
 var blackWidth = 30;
 var fequency = {};
-var keys = [];
+var octaves = [];
 
 function setup() {
   createCanvas(1200, 200);
@@ -12,7 +12,7 @@ function setup() {
   yPressed = createP();
   keyNote = createP();
   octave = createP();
-  keys = createKeys();
+  octaves = createOctaves();
 }
 
 function draw() {
@@ -33,25 +33,13 @@ function mousePressed() {
   }
 }
 
-function createKeys(){
-  var k = [];
-//white keys
-  var keyCount = width / scl;
-  var topLeft = 0;
-  for (var i = 0; i < keyCount; i++) {
-    var pianoKey = new Pkey(topLeft,scl,height,255,wFreq[i].note,wFreq[i].f, wFreq[i].wavelength, scl, blackWidth);
-    k.push(pianoKey);
-    topLeft += scl;
+function createOctaves(){
+  var o = [];
+  var level = 0;
+  for (i = 0; i < 6; i++){
+    var oct = new Octave()
+    o.push(oct);
+    level++;
   }
-  topLeft = 0;
-  for (i = 0; i < keyCount / 2; i++) {
-    var pianoKey = new Pkey(topLeft, blackWidth, height, 0, bFreq[i].note, bFreq[i].f, bFreq[i].wavelength, scl, blackWidth);
-    k.push(pianoKey);
-    if (pianoKey.pos == 'skip') {
-      topLeft += (scl * 2);
-    } else {
-      topLeft += scl;
-    }
-  }
-  return k;
+  return o;
 }
