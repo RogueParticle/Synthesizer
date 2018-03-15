@@ -1,4 +1,5 @@
 function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
+  //keys hold frequencies
   this.x = inX;
   this.whiteWidth = ww;
   this.x2 = this.x + this.w;

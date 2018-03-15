@@ -1,4 +1,5 @@
 function Octave(level) {
+  //octaves contain keys;
   this.level = level
   this.active = false;
   this.notes = [];

@@ -34,6 +34,7 @@ function mousePressed() {
 }
 
 function createOctaves(){
+  //octaves contain keys
   var o = [];
   var level = 0;
   for (i = 0; i < 6; i++){
