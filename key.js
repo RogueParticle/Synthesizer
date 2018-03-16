@@ -2,7 +2,7 @@ function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
   //keys hold frequencies
   this.x = inX;
   this.whiteWidth = ww;
-  this.x2 = this.x + this.w;
+  this.x2 = this.x + this.whiteWidth;
   this.whiteHeight = wh;
   this.blackWidth = bw;
   this.blackHeight = bh;
@@ -61,47 +61,47 @@ function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
     }
   }
 
-  this.show = function() {
+  this.show = function(offset) {
     stroke(0);
     strokeWeight(2);
     fill(this.fillColor);
     if ( this.fillColor == 255) { //drqw white keys
-      switch(this.pos) {
+      switch(this.pos) { 
         case 'left':
           beginShape();
-          vertex(this.x, 0);
-          vertex(this.x2 - this.blackWidth/2, 0);
-          vertex(this.x2 - this.blackWidth/2, this.blackHeight);
-          vertex(this.x2, this.blackHeight);
-          vertex(this.x2, this.h);
-          vertex(this.x, this.h);
+          vertex(this.x + offset, 0);
+          vertex(this.x2 + offset - this.blackWidth/2, 0);
+          vertex(this.x2 + offset - this.blackWidth/2, this.blackHeight);
+          vertex(this.x2 + offset, this.blackHeight);
+          vertex(this.x2 + offset, this.h);
+          vertex(this.x + offset, this.h);
           endShape(CLOSE);
           break;
         case 'center':
           beginShape();
-          vertex(this.x + this.blackWidth/2, 0);
-          vertex(this.x2 - this.blackWidth/2, 0);
-          vertex(this.x2 - this.blackWidth/2, this.blackHeight);
-          vertex(this.x2, this.blackHeight);
-          vertex(this.x2, this.h);
-          vertex(this.x, this.h);
-          vertex(this.x, this.blackHeight);
-          vertex(this.x + this.blackWidth/2, this.blackHeight);
+          vertex(this.x + offset + this.blackWidth/2, 0);
+          vertex(this.x2 + offset - this.blackWidth/2, 0);
+          vertex(this.x2 + offset - this.blackWidth/2, this.blackHeight);
+          vertex(this.x2 + offset, this.blackHeight);
+          vertex(this.x2 + offset, this.h);
+          vertex(this.x + offset, this.h);
+          vertex(this.x + offset, this.blackHeight);
+          vertex(this.x + offset + this.blackWidth/2, this.blackHeight);
           endShape(CLOSE);
           break;
         case 'right':
           beginShape();
-          vertex(this.x + this.blackWidth/2, 0);
-          vertex(this.x2, 0);
-          vertex(this.x2, this.h);
-          vertex(this.x, this.h);
-          vertex(this.x, this.blackHeight);
-          vertex(this.x + this.blackWidth/2, this.blackHeight);
+          vertex(this.x + offset + this.blackWidth/2, 0);
+          vertex(this.x2 + offset, 0);
+          vertex(this.x2 + offset, this.h);
+          vertex(this.x + offset, this.h);
+          vertex(this.x + offset, this.blackHeight);
+          vertex(this.x + offset + this.blackWidth/2, this.blackHeight);
           endShape(CLOSE);
           break;
       }
     } else { //draw black keys
-        rect(this.x, 0, this.blackWidth, this.blackHeight);
+        rect(this.x + offset, 0, this.blackWidth, this.blackHeight);
     }
   }
 
