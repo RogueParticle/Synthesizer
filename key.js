@@ -2,7 +2,6 @@ function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
   //keys hold frequencies
   this.x = inX;
   this.whiteWidth = ww;
-  this.x2 = this.x + this.whiteWidth;
   this.whiteHeight = wh;
   this.blackWidth = bw;
   this.blackHeight = bh;
@@ -21,6 +20,7 @@ function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
   }
 
   if (this.fillColor == 255) {
+    this.x2 = this.x + this.whiteWidth;
     switch(this.note) {
       case 'C':
         this.pos = 'left';
@@ -59,6 +59,7 @@ function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
         this.x = this.x - (this.blackWidth / 2);
         break;
     }
+    this.x2 = this.x + this.blackWidth;
   }
 
   this.show = function(offset) {
@@ -66,15 +67,15 @@ function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
     strokeWeight(2);
     fill(this.fillColor);
     if ( this.fillColor == 255) { //drqw white keys
-      switch(this.pos) { 
+      switch(this.pos) {
         case 'left':
           beginShape();
           vertex(this.x + offset, 0);
           vertex(this.x2 + offset - this.blackWidth/2, 0);
           vertex(this.x2 + offset - this.blackWidth/2, this.blackHeight);
           vertex(this.x2 + offset, this.blackHeight);
-          vertex(this.x2 + offset, this.h);
-          vertex(this.x + offset, this.h);
+          vertex(this.x2 + offset, this.whiteHeight);
+          vertex(this.x + offset, this.whiteHeight);
           endShape(CLOSE);
           break;
         case 'center':
@@ -83,8 +84,8 @@ function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
           vertex(this.x2 + offset - this.blackWidth/2, 0);
           vertex(this.x2 + offset - this.blackWidth/2, this.blackHeight);
           vertex(this.x2 + offset, this.blackHeight);
-          vertex(this.x2 + offset, this.h);
-          vertex(this.x + offset, this.h);
+          vertex(this.x2 + offset, this.whiteHeight);
+          vertex(this.x + offset, this.whiteHeight);
           vertex(this.x + offset, this.blackHeight);
           vertex(this.x + offset + this.blackWidth/2, this.blackHeight);
           endShape(CLOSE);
@@ -93,8 +94,8 @@ function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
           beginShape();
           vertex(this.x + offset + this.blackWidth/2, 0);
           vertex(this.x2 + offset, 0);
-          vertex(this.x2 + offset, this.h);
-          vertex(this.x + offset, this.h);
+          vertex(this.x2 + offset, this.whiteHeight);
+          vertex(this.x + offset, this.whiteHeight);
           vertex(this.x + offset, this.blackHeight);
           vertex(this.x + offset + this.blackWidth/2, this.blackHeight);
           endShape(CLOSE);
@@ -105,12 +106,58 @@ function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
     }
   }
 
-  this.clicked = function(x,y) {
-    if(x > this.x && x < (this.x + this.w) && y > this.w && y < (this.w + this.h)) {
-      return true;
+  this.clicked = function(x,y,offset) {
+    //check white keys
+    var inside = false;
+    if (this.fillColor == 255) {
+      switch (this.pos) {
+        case 'left':
+          //check top
+          if (y > 0 && y < this.blackHeight) {
+            if (x > this.x + offset && x < this.x2 + offset - this.blackWidth / 2) {
+              inside = true;
+            }
+          //check bottom
+          } else if( y >= this.blackHeight && y <= this.whiteHeight) {
+            if (x > this.x + offset && x < this.x2 + offset) {
+              inside = true;
+            }
+          }
+          break;
+        case 'right':
+          //check top
+          if (y > 0 && y < this.blackHeight) {
+            if (x > this.x + offset  + this.blackWidth / 2 && x < this.x2 + offset - this.blackWidth/2) {
+              inside = true;
+            }
+          //check bottom
+          } else if (y >= this.blackHeight && y <= this.whiteHeight) {
+            if (x > this.x + offset && x < this.x2 + offset) {
+              inside = true;
+            }
+          }
+          break;
+        case 'center':
+          //check top
+          if (y > 0 && y < this.blackHeight) {
+            if (x > this.x + offset + this.blackWidth / 2 && x < this.x2 + offset - this.blackWidth / 2 ) {
+              inside = true;
+            }
+          //check bottom
+          } else if ( y >= this.blackHeight && y <= this.whiteHeight) {
+            if (x > this.x + offset && x < this.x2 + offset) {
+              inside = true;
+            }
+          }
+          break;
+      }
+    //Check black keys
     } else {
-      return false;
+      if (y > 0 && y < this.blackHeight && x > this.x + offset && x < this.x2 + offset) {
+        inside = true;
+      }
     }
+    return inside;
   }
 
 
