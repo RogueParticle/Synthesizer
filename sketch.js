@@ -4,6 +4,7 @@ var blackWidth = 30;
 var fequency = {};
 var octaves = [];
 var octaveWidth = 350;
+var octaveWindow = [];
 
 function setup() {
   createCanvas(octaveWidth * 3, 200);
