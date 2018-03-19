@@ -14,7 +14,7 @@ function Octave(level) {
   var wWidth = 50;
   var bWidth = 30;
   var wHeight = 200;
-  var bHeight = floor(wHeight * .60);
+  var bHeight = Math.floor(wHeight * .60);
 
   //load white keys
   var keyOffset = 0;
