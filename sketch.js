@@ -1,4 +1,4 @@
-var pX, pY, xPressed, yPressed, octaveP, octNoteP;
+var pX, pY, xPressed, yPressed, octaveP, octNoteP,octSlide, octSlideP;
 var octWindow = new OctaveWindow();
 
 function setup() {
@@ -8,11 +8,16 @@ function setup() {
   octaveP = createP('none');
   octNoteP = createP('none');
   octFreqP = createP('none');
+  octSlider = createSlider(1, octWindow.octCount - 1, octWindow.startOctave);
+  octSlideP = createP(octSlider.value());
 }
 
 function draw() {
   background(85);
   octWindow.show();
+  var octVal = octSlider.value();
+  octWindow.setOctave(octVal);
+  octSlideP.html(octVal);
 }
 
 function mousePressed() {
