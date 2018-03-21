@@ -39,7 +39,11 @@ function OctaveWindow() {
       }
       offset += this.octaveWidth;
     }
-    if (found) return octNote;
+    if (found) {
+      return octNote;
+    } else {
+      return 0;
+    }
   }
 
   var whiteWidth = 50;
