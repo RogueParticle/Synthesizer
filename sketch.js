@@ -14,9 +14,9 @@ function setup() {
 
 function draw() {
   background(85);
-  octWindow.show();
   var octVal = octSlider.value();
   octWindow.setOctave(octVal);
+  octWindow.show();
   octSlideP.html(octVal);
 }
 
