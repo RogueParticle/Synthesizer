@@ -1,8 +1,15 @@
-var pX, pY, xPressed, yPressed, octaveP, octNoteP,octSlide, octSlideP;
+function overNote(x, y) {
+  overXP.html(x);
+  overYP.html(y);
+  octWindow.over(x, y);
+}
+
+var pX, pY, xPressed, yPressed, octaveP, octNoteP,octSlide, octSlideP, overXP, overYP, overNoteP;
 var octWindow = new OctaveWindow();
+var kb;
 
 function setup() {
-  createCanvas(octWindow.octaveWidth * octWindow.octPerWindow, 200);
+  kb = createCanvas(octWindow.octaveWidth * octWindow.octPerWindow, 200);
   xPressed = createP('none');
   yPressed = createP('none');
   octaveP = createP('none');
@@ -10,14 +17,20 @@ function setup() {
   octFreqP = createP('none');
   octSlider = createSlider(1, octWindow.octCount - 1, octWindow.startOctave);
   octSlideP = createP(octSlider.value());
+  octWindow.setOctave(octSlider.value());
+  octWindow.show();
+  overXP = createP('none');
+  overYP = createP('none');
+  overNoteP = createP('none');
 }
 
 function draw() {
-  background(85);
+  background(200);
   var octVal = octSlider.value();
   octWindow.setOctave(octVal);
   octWindow.show();
   octSlideP.html(octVal);
+  overNote(mouseX, mouseY);
 }
 
 function mousePressed() {
@@ -33,4 +46,5 @@ function mousePressed() {
     octaveP.html('none');
     octFreqP.html('none');
   }
+
 }

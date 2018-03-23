@@ -46,6 +46,14 @@ function OctaveWindow() {
     }
   }
 
+  this.over = function(x,y) {
+    var offset = 0;
+    for(i=this.startOctave - 1; i < this.startOctave - 1 + this.octPerWindow; i++) {
+      this.octaves[i].over(x,y,offset);
+      offset += this.octaveWidth;
+    }
+  }
+
   var whiteWidth = 50;
   var blackWidth = 30;
   this.octaves = [];

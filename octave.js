@@ -6,7 +6,6 @@ function Octave(level) {
   var topLeft = 0;
   var wKeyCount = 7;
   var bKeyCount = 5;
-  //this.totalKeys = this.wKeyCount + this.bKeyCount;
   var wStart = this.level * wKeyCount;
   var wEndKey = ((this.level + 1) * wKeyCount);
   var bStart = this.level * bKeyCount;
@@ -50,4 +49,13 @@ function Octave(level) {
     }
     return 0;
   }
+
+  this.over = function(x,y,offset) {
+    for( i = 0; i < this.notes.length; i++ ) {
+      if ( this.notes[i].over(x,y,offset)) {
+        this.notes[i].showValues(offset);
+      }
+    }
+  }
+
 }

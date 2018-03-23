@@ -107,7 +107,22 @@ function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
   }
 
   this.clicked = function(x,y,offset) {
-    //check white keys
+    if(this.isInside(x,y,offset)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  this.over = function(x,y,offset) {
+    if(this.isInside(x,y,offset)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  this.isInside = function(x,y,offset) {
     var inside = false;
     if (this.fillColor == 255) {
       switch (this.pos) {
@@ -126,8 +141,8 @@ function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
           break;
         case 'right':
           //check top
-          if (y > 0 && y < this.blackHeight) {
-            if (x > this.x + offset  + this.blackWidth / 2 && x < this.x2 + offset - this.blackWidth/2) {
+          if (y >= 0 && y <= this.blackHeight) {
+            if (x >= this.x + offset  + this.blackWidth / 2 && x < this.x2 + offset) {
               inside = true;
             }
           //check bottom
@@ -160,5 +175,22 @@ function Pkey( inX, ww, wh, bw, bh, color, note, freq, wl) {
     return inside;
   }
 
+  this.showValues = function(offset) {
+    noStroke();
+    textSize(12);
+    if (this.fillColor == 255) {
+      var x = this.x + offset + 20;
+      var y = this.whiteHeight - 20;
+      fill(0);
+    } else {
+      var x = this.x + offset + 5;
+      var y = this.blackHeight - 20;
+      fill(255);
+      //var y = this.whiteHeight + 15;
+      //text(this.note + this.octave,x,y);
+    }
+    //var y = this.whiteHeight - 20;
+    text(this.note + this.octave,x,y);
+  }
 
 }
