@@ -4,12 +4,15 @@ function overNote(x, y) {
   octWindow.over(x, y);
 }
 
-var pX, pY, xPressed, yPressed, octaveP, octNoteP,octSlide, octSlideP, overXP, overYP, overNoteP;
-var octWindow = new OctaveWindow();
+var pX, pY, xPressed, yPressed, octaveP, octNoteP,octSlide, octSlideP, overXP, overYP, overNoteP, backColor;
+var octWindow;
 var kb;
 
 function setup() {
-  kb = createCanvas(octWindow.octaveWidth * octWindow.octPerWindow, 200);
+  backColor = 255;
+  octWindow = new OctaveWindow();
+  createCanvas(octWindow.octaveWidth * octWindow.octPerWindow, 200);
+  background(backColor);
   xPressed = createP('none');
   yPressed = createP('none');
   octaveP = createP('none');
@@ -25,7 +28,7 @@ function setup() {
 }
 
 function draw() {
-  background(200);
+  background(backColor);
   var octVal = octSlider.value();
   octWindow.setOctave(octVal);
   octWindow.show();

@@ -3,7 +3,7 @@ function OctaveWindow() {
     var o = [];
     var level = 0;
     for (i = 0; i < this.octCount + 1; i++){
-      var oct = new Octave(level);
+      var oct = new Octave(level, this.colors[i]);
       o.push(oct);
       level++;
     }
@@ -57,6 +57,8 @@ function OctaveWindow() {
   var whiteWidth = 50;
   var blackWidth = 30;
   this.octaves = [];
+  this.alpha = 0.50;
+  this.colors = colors;
   this.octaveWidth = 350;
   this.octPerWindow = 3;
   this.startOctave = 4;

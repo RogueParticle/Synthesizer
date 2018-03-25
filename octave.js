@@ -1,8 +1,9 @@
-function Octave(level) {
+function Octave(level, colors) {
   //octaves contain keys;
   this.level = level;
   this.active = false;
   this.notes = [];
+  this.colors = colors;
   var topLeft = 0;
   var wKeyCount = 7;
   var bKeyCount = 5;
@@ -17,8 +18,9 @@ function Octave(level) {
 
   //load white keys
   var keyOffset = 0;
+  //this.color.setAlpha(this.wAlpha);
   for(var i = wStart; i < wEndKey; i++) {
-    var pianoKey = new Pkey(keyOffset, wWidth, wHeight, bWidth, bHeight, 255, wFreq[i].note, wFreq[i].f, wFreq[i].wavelength);
+    var pianoKey = new Pkey(keyOffset, wWidth, wHeight, bWidth, bHeight, this.colors, 'white', wFreq[i].note, wFreq[i].f, wFreq[i].wavelength);
     this.notes.push(pianoKey);
     keyOffset += wWidth;
   }
@@ -26,7 +28,7 @@ function Octave(level) {
   //load black keys
   keyOffset = 0;
   for (i = bStart; i < bEndKey; i++) {
-    var pianoKey = new Pkey(keyOffset, wWidth, wHeight, bWidth, bHeight, 0, bFreq[i].note, bFreq[i].f, bFreq[i].wavelength);
+    var pianoKey = new Pkey(keyOffset, wWidth, wHeight, bWidth, bHeight, this.colors, 'black', bFreq[i].note, bFreq[i].f, bFreq[i].wavelength);
     this.notes.push(pianoKey);
     if (pianoKey.pos == 'skip') {
       keyOffset += (wWidth * 2);
