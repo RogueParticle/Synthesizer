@@ -8,6 +8,16 @@ var pX, pY, xPressed, yPressed, octaveP, octNoteP,octSlide, octSlideP, overXP, o
 var octWindow;
 var kb;
 
+var attackLevel = 1.0;
+var releaseLevel = 0;
+
+var attackTime = 0.001
+var decayTime = 0.2;
+var susPercent = 0.2;
+var releaseTime = 0.5;
+
+var env, sinOsc;
+
 function setup() {
   backColor = 255;
   octWindow = new OctaveWindow();
@@ -25,6 +35,13 @@ function setup() {
   overXP = createP('none');
   overYP = createP('none');
   overNoteP = createP('none');
+  sinOsc = new p5.Oscillator();
+  sinOsc.setType('sine');
+  env = new p5.Env();
+  env.setADSR(attackTime, decayTime, susPercent, releaseTime);
+  env.setRange(attackLevel, releaseLevel);
+  sinOsc.amp(env);
+  sinOsc.start();
 }
 
 function draw() {
@@ -44,6 +61,8 @@ function mousePressed() {
     octNoteP.html(octNote.note);
     octaveP.html(octNote.octave);
     octFreqP.html(octNote.f);
+    sinOsc.freq(octNote.f);
+    env.play();
   } else {
     octNoteP.html('none');
     octaveP.html('none');
