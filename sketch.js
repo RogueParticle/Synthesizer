@@ -5,7 +5,7 @@ function overNote(x, y) {
 }
 
 var pX, pY, xPressed, yPressed, octaveP, octNoteP,octSlide, octSlideP, overXP, overYP, overNoteP, backColor;
-var octWindow;
+var octWindow,sineButton,squareButton, triangleButton, sawtoothButton;
 var kb;
 
 var attackLevel = 1.0;
@@ -35,6 +35,16 @@ function setup() {
   overXP = createP('none');
   overYP = createP('none');
   overNoteP = createP('none');
+
+  sineButton = createButton('Sine');
+  sineButton.mousePressed(setSine);
+  squareButton = createButton('Square');
+  squareButton.mousePressed(setSquare);
+  triangleButton = createButton('Triangle');
+  triangleButton.mousePressed(setTriangle);
+  sawtoothButton = createButton('Sawtooth');
+  sawtoothButton.mousePressed(setSawtooth);
+
   sinOsc = new p5.Oscillator();
   sinOsc.setType('sine');
   env = new p5.Env();
@@ -42,6 +52,19 @@ function setup() {
   env.setRange(attackLevel, releaseLevel);
   sinOsc.amp(env);
   sinOsc.start();
+}
+
+function setSine() {
+  sinOsc.setType('sine');
+}
+function setSquare() {
+  sinOsc.setType('square');
+}
+function setTriangle() {
+  sinOsc.setType('triangle');
+}
+function setSawtooth() {
+  sinOsc.setType('sawtooth');
 }
 
 function draw() {
