@@ -54,8 +54,8 @@ function setup() {
   env.setRange(attackLevel, releaseLevel);
   sinOsc.amp(env);
   sinOsc.start();
-  var volValue = volSlider.value();
-  sinOsc.amp(volValue);
+  //var volValue = volSlider.value();
+  //sinOsc.amp(volValue);
 }
 
 function setSine() {
@@ -78,8 +78,8 @@ function draw() {
   octWindow.show();
   octSlideP.html(octVal);
   overNote(mouseX, mouseY);
-  volValue = volSlider.value();
-  sinOsc.amp(volValue);
+  //volValue = volSlider.value();
+  //sinOsc.amp(volValue);
 }
 
 function mousePressed() {
